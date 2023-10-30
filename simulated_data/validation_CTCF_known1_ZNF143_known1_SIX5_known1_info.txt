@@ -1,0 +1,94 @@
+{
+    "numSeq": 5000,
+    "singleSetGenerator": {
+        "class": "EmbedInABackground",
+        "namePrefix": "synth",
+        "backgroundGenerator": {
+            "class": "RepeatedSubstringBackgroundGenerator",
+            "substringGenerator": {
+                "class": "SampleFromDiscreteDistributionSubstringGenerator",
+                "discreteDistribution": {
+                    "A": 0.27,
+                    "C": 0.23,
+                    "G": 0.23,
+                    "T": 0.27
+                }
+            },
+            "repetitions": "fixedQuantity-600"
+        },
+        "embedders": [
+            {
+                "class": "RepeatedEmbedder",
+                "embedder": {
+                    "embeddableGenerator": {
+                        "class": "SubstringEmbeddableGenerator",
+                        "substringGenerator": {
+                            "class": "ReverseComplementWrapper",
+                            "reverseComplementProb": 0.5,
+                            "substringGenerator": {
+                                "class": "PwmSampler",
+                                "motifName": "CTCF_known1",
+                                "bg": null,
+                                "minScore": null
+                            }
+                        }
+                    },
+                    "positionGenerator": "uniform"
+                },
+                "quantityGenerator": {
+                    "class": "UniformIntegerGenerator",
+                    "minVal": 0,
+                    "maxVal": 1
+                }
+            },
+            {
+                "class": "RepeatedEmbedder",
+                "embedder": {
+                    "embeddableGenerator": {
+                        "class": "SubstringEmbeddableGenerator",
+                        "substringGenerator": {
+                            "class": "ReverseComplementWrapper",
+                            "reverseComplementProb": 0.5,
+                            "substringGenerator": {
+                                "class": "PwmSampler",
+                                "motifName": "ZNF143_known1",
+                                "bg": null,
+                                "minScore": null
+                            }
+                        }
+                    },
+                    "positionGenerator": "uniform"
+                },
+                "quantityGenerator": {
+                    "class": "UniformIntegerGenerator",
+                    "minVal": 0,
+                    "maxVal": 1
+                }
+            },
+            {
+                "class": "RepeatedEmbedder",
+                "embedder": {
+                    "embeddableGenerator": {
+                        "class": "SubstringEmbeddableGenerator",
+                        "substringGenerator": {
+                            "class": "ReverseComplementWrapper",
+                            "reverseComplementProb": 0.5,
+                            "substringGenerator": {
+                                "class": "PwmSampler",
+                                "motifName": "SIX5_known1",
+                                "bg": null,
+                                "minScore": null
+                            }
+                        }
+                    },
+                    "positionGenerator": "uniform"
+                },
+                "quantityGenerator": {
+                    "class": "UniformIntegerGenerator",
+                    "minVal": 0,
+                    "maxVal": 1
+                }
+            }
+        ]
+    }
+}
