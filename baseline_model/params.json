@@ -1,0 +1,58 @@
+{
+    "train": {
+        "batch_size": 64,
+        "shuffle_buffer": 8192,
+        "optimizer": "sgd",
+        "loss": "bce",
+        "learning_rate": 0.005,
+        "momentum": 0.98,
+        "patience": 12,
+        "train_epochs_min": 10
+    },
+    "model": {
+        "seq_length": 600,
+
+        "augment_rc": true,
+        "augment_shift": 3,
+
+        "activation": "gelu",
+        "norm_type": "batch",
+        "bn_momentum": 0.90,
+        
+        "trunk": [
+            {
+                "name": "conv_dna",
+                "filters": 288,
+                "kernel_size": 17,
+                "pool_size": 3
+            },
+            {
+                "name": "conv_tower",
+                "filters_init": 288,
+		"filters_end": 512,
+		"divisible_by": 16,
+                "kernel_size": 5,
+                "pool_size": 2,
+                "repeat": 6
+            },
+            {
+                "name": "conv_block",
+                "filters": 256,
+                "kernel_size": 1
+            },
+            {
+                "name": "dense_block",
+		"flatten": true,
+                "units": 768,
+                "dropout": 0.2
+            }
+        ],
+        "head": [
+            {
+                "name": "final",
+                "units": 2063,
+                "activation": "sigmoid"
+            }
+        ]
+    }
+}
